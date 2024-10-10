@@ -1,18 +1,20 @@
 <template>
-  <section>
-    <h1 class="bg-slate-800 text-3xl text-center text-white py-5 w-full">Guruhingizni tanlang</h1>
-    <div v-if="loading" class="container mx-auto max-w-6xl text-3xl py-4">Loading...</div>
+  <section class="bg-gray-50 py-10 min-h-screen">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Guruhingizni tanlang</h1>
+    <TheLoader v-if="loading" />
     <div v-else>
-      <div v-if="groups.length > 0" class="container mx-auto max-w-6xl">
-        <ul class="flex flex-col gap-5 py-10 text-lg">
+      <div v-if="groups.length > 0" class="max-w-2xl mx-auto">
+        <ul class="space-y-4">
           <li
             v-for="(group, index) in groups"
             :key="group.id"
-            class="bg-slate-900 rounded-md flex items-center text-white"
+            class="bg-white shadow-md rounded-lg p-4 flex items-center transition-transform transform hover:scale-105"
           >
-            <span class="p-5 bg-slate-800 rounded-tl-md rounded-bl-md block">
-              {{ index + 1 }}. {{ group.id }}</span
+            <span
+              class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4"
             >
+              {{ index + 1 }}
+            </span>
             <router-link
               :to="{
                 name: 'group',
@@ -20,14 +22,14 @@
                   id: group.id
                 }
               }"
-              class="px-4 hover:text-gray-400 transition-colors"
+              class="text-lg font-semibold text-blue-600 hover:underline"
             >
               {{ group.name }}
             </router-link>
           </li>
         </ul>
       </div>
-      <div v-else class="container mx-auto max-w-6xl text-center py-4">No groups found.</div>
+      <div v-else class="max-w-2xl mx-auto text-center py-4 text-gray-600">No groups found.</div>
     </div>
   </section>
 </template>
@@ -36,6 +38,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
+import TheLoader from '@/components/TheLoader.vue'
 
 // Reactive variables for groups data and loading state
 const groups = ref<any[]>([]) // Initialize as an empty array
@@ -73,5 +76,5 @@ onMounted(fetchGroups)
 </script>
 
 <style scoped>
-/* Add any component-specific styles here */
+/* You can add additional scoped styles if needed */
 </style>

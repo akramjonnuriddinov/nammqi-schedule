@@ -1,31 +1,30 @@
 <template>
-  <section>
-    <h1 class="bg-slate-800 text-3xl text-center text-white py-5 w-full">
-      Fakultetingizni tanlang
-    </h1>
-    <div v-if="loading" class="container mx-auto max-w-6xl text-3xl py-4">Loading...</div>
+  <section class="bg-gray-50 py-10 min-h-screen">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Fakultetingizni tanlang</h1>
+    <the-loader v-if="loading" />
     <div v-else>
-      <div v-if="data" class="container mx-auto max-w-6xl">
-        <!-- {{ data?.data?.items }} -->
-        <ul class="flex flex-col gap-5 py-10 text-lg">
+      <div v-if="data" class="max-w-2xl mx-auto">
+        <ul class="space-y-4">
           <li
-            v-for="(data, index) in data?.data?.items"
-            :key="data.id"
-            class="bg-slate-900 rounded-md flex items-center text-white"
+            v-for="(item, index) in data?.data?.items"
+            :key="item.id"
+            class="bg-white shadow-md rounded-lg p-4 flex items-center transition-transform transform hover:scale-105"
           >
-            <span class="p-5 bg-slate-800 rounded-tl-md rounded-bl-md block w-[5%]">
-              {{ index + 1 }}</span
+            <span
+              class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4"
             >
+              {{ index + 1 }}
+            </span>
             <router-link
               :to="{
                 name: 'groups',
                 params: {
-                  id: data.id
+                  id: item.id
                 }
               }"
-              class="px-4 hover:text-gray-400 transition-colors"
+              class="text-lg font-semibold text-blue-600 hover:underline"
             >
-              {{ data.name }}
+              {{ item.name }}
             </router-link>
           </li>
         </ul>
@@ -35,31 +34,34 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import TheLoader from '@/components/TheLoader.vue'
 
-// Use the proxied API URL
 const apiURL = '/api/rest/v1/data/department-list?limit=200&_structure_type=11'
 const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
 
-// Reactive variables for data and loading state
 const data = ref<any>(null)
-const loading = ref(true) // Set loading to true initially
+const loading = ref(true)
 
-// Send request to the proxied Backend API
-axios
-  .get(apiURL, {
-    headers: {
-      Authorization: `Bearer ${adminToken}`
-    }
-  })
-  .then((response) => {
+const fetchDepartments = async () => {
+  try {
+    const response = await axios.get(apiURL, {
+      headers: {
+        Authorization: `Bearer ${adminToken}`
+      }
+    })
     data.value = response.data
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error('Error fetching data:', error)
-  })
-  .finally(() => {
-    loading.value = false // Set loading to false after the request completes
-  })
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(fetchDepartments)
 </script>
+
+<style scoped>
+/* You can add additional scoped styles if needed */
+</style>

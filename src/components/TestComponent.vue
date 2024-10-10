@@ -1,7 +1,7 @@
 <template>
   <div class="schedule-container">
     <div v-for="day in orderedLessons" :key="day.dayName" class="day-section">
-      <h2 class="day-header">{{ day.dayName }}</h2>
+      <h2 class="day-header text-center">{{ day.dayName }}</h2>
       <table class="lesson-table">
         <thead>
           <tr>
@@ -112,12 +112,12 @@ const orderedLessons = computed((): DayLesson[] => {
 }
 
 .day-header {
-  background-color: #00bfa5;
+  @apply bg-blue-400;
   color: white;
   text-align: center;
-  padding: 10px;
-  font-size: 1.5rem;
-  font-weight: bold;
+  padding: 10px 5px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .lesson-table {
