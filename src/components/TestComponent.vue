@@ -4,9 +4,9 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Day</th>
-          <th>Lesson</th>
-          <th>Time</th>
+          <th>Hafta Kuni</th>
+          <th>Dars</th>
+          <th>Dars vaqti</th>
         </tr>
       </thead>
       <tbody>
@@ -15,14 +15,17 @@
             <td>{{ index + 1 }}</td>
             <td>{{ day.dayName }}</td>
             <td v-if="day.lessons.length > 0">
-              <ul>
+              <ul class="flex flex-col gap-1">
                 <li v-for="(lesson, idx) in day.lessons" :key="idx">
+                  <span class="inline-block w-5 text-xl font-serif"
+                    >{{ lesson.lessonPair.name }}.</span
+                  >
                   {{ lesson.subject.name }}
                 </li>
               </ul>
             </td>
             <td v-if="day.lessons.length > 0">
-              <ul>
+              <ul class="flex flex-col gap-1">
                 <li v-for="(lesson, idx) in day.lessons" :key="idx">
                   {{ lesson.lessonPair.start_time }} - {{ lesson.lessonPair.end_time }}
                 </li>

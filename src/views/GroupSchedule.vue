@@ -800,9 +800,9 @@ const lessons2 = [
 </script>
 
 <style>
-li {
+/*li {
   list-style: circle;
-}
+}*/
 
 table {
   width: 100%;
