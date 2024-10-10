@@ -16,11 +16,13 @@
             <td>{{ day.dayName }}</td>
             <td v-if="day.lessons.length > 0">
               <ul class="flex flex-col gap-1">
-                <li v-for="(lesson, idx) in day.lessons" :key="idx">
+                <li v-for="(lesson, idx) in day.lessons" :key="idx" class="flex items-center gap-5">
                   <span class="inline-block w-5 text-xl font-serif"
                     >{{ lesson.lessonPair.name }}.</span
                   >
                   {{ lesson.subject.name }}
+                  <span>({{ lesson.employee.name }} \ </span>
+                  <span class="font-medium"> {{ lesson.auditorium.name }})</span>
                 </li>
               </ul>
             </td>
