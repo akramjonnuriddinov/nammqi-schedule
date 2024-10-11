@@ -16,7 +16,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://student.nammqi.uz',
+        target: 'http://student.nammqi.uz',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),  // Adjust path if necessary
       }
