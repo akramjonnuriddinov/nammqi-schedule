@@ -113,7 +113,7 @@ const orderedLessons = computed((): DayLesson[] => {
 }
 
 .day-header {
-  @apply bg-blue-400;
+  @apply bg-blue-500;
   color: white;
   text-align: center;
   padding: 10px 5px;
