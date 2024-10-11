@@ -71,10 +71,7 @@ const fetchDepartments = async () => {
   try {
     const response = await axios.get(apiURL, {
       headers: {
-        Authorization: `Bearer ${adminToken}`,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+        Authorization: `Bearer ${adminToken}`
       }
     })
     data.value = response.data
