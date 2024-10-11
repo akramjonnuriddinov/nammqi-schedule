@@ -26,13 +26,23 @@
 
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Guruhingizni tanlang</h1>
 
+    <!-- Search Input -->
+    <div class="max-w-2xl mx-auto mb-4">
+      <input
+        type="text"
+        v-model="searchQuery"
+        placeholder="Guruhingiz nomini yozing..."
+        class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      />
+    </div>
+
     <TheLoader v-if="loading" />
 
     <div v-else>
-      <div v-if="groups.length > 0" class="max-w-2xl mx-auto">
+      <div v-if="filteredGroups.length > 0" class="max-w-2xl mx-auto">
         <ul class="space-y-4">
           <li
-            v-for="(group, index) in groups"
+            v-for="(group, index) in filteredGroups"
             :key="group.id"
             class="bg-white shadow-md rounded-lg p-4 flex items-center transition-transform transform hover:scale-105"
           >
@@ -62,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 import TheLoader from '@/components/TheLoader.vue'
@@ -70,6 +80,9 @@ import TheLoader from '@/components/TheLoader.vue'
 // Reactive variables for groups data and loading state
 const groups = ref<any[]>([]) // Initialize as an empty array
 const loading = ref(true) // Set loading to true initially
+
+// Search query for filtering the groups
+const searchQuery = ref('')
 
 // Get the current route to access the department ID
 const route = useRoute()
@@ -98,10 +111,16 @@ const fetchGroups = async () => {
   }
 }
 
+// Computed property for filtering the groups by search query
+const filteredGroups = computed(() => {
+  if (!searchQuery.value) {
+    return groups.value
+  }
+  return groups.value.filter((group) =>
+    group.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+})
+
 // Fetch groups when the component is mounted
 onMounted(fetchGroups)
 </script>
-
-<style scoped>
-/* You can add additional scoped styles if needed */
-</style>
