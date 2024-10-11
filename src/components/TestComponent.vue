@@ -1,5 +1,4 @@
 <template>
-  <!-- {{ orderedLessons }} -->
   <div class="schedule-container">
     <div v-for="day in orderedLessons" :key="day.dayName" class="day-section">
       <h2 class="day-header text-center">{{ day.dayName }}</h2>
@@ -147,6 +146,64 @@ const orderedLessons = computed((): DayLesson[] => {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
+}
+
+.lesson-table th {
+  background-color: #f4f4f4;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.lesson-table {
+  width: 100%;
+  table-layout: fixed; /* Ensures columns have fixed widths */
+  border-collapse: collapse;
+  font-weight: 500;
+}
+
+.lesson-table th,
+.lesson-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Set specific column widths */
+.lesson-table th:nth-child(1),
+.lesson-table td:nth-child(1) {
+  width: 5%; /* Set width for the # column */
+  text-align: center;
+}
+
+.lesson-table th:nth-child(2),
+.lesson-table td:nth-child(2),
+.lesson-table th:nth-child(3),
+.lesson-table td:nth-child(3) {
+  width: 10%; /* Width for Kirish and Chiqish */
+  text-align: center;
+}
+
+.lesson-table th:nth-child(4),
+.lesson-table td:nth-child(4) {
+  width: 35%; /* Width for Fan nomi */
+}
+
+.lesson-table th:nth-child(5),
+.lesson-table td:nth-child(5) {
+  width: 20%; /* Width for Xona */
+}
+
+.lesson-table th:nth-child(6),
+.lesson-table td:nth-child(6) {
+  text-align: center;
+  width: 10%; /* Width for Fan turi */
+}
+
+.lesson-table th:nth-child(7),
+.lesson-table td:nth-child(7) {
+  width: 20%; /* Width for O‘qituvchi */
 }
 
 .lesson-table th {
