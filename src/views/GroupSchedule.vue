@@ -17,52 +17,51 @@ const route = useRoute()
 const groupId = route.params.id
 const schedule = ref<any>([])
 const loading = ref(true)
-const weekStartTime = ref<number | null>(null)
-const weekEndTime = ref<number | null>(null)
 const lessons = ref<any>([])
 
-function getCurrentWeekStartTimestamp() {
+function getCurrentWeekStartTime() {
   const now = new Date()
 
-  // Get the current day of the week (0 is Sunday, 1 is Monday, etc.)
-  const dayOfWeek = now.getDay()
+  // Get current day of the week (0 = Sunday, 1 = Monday, etc.)
+  const currentDay = now.getDay()
 
-  // Create a new date object set to the current time
-  const startOfWeek = new Date(now)
+  // Calculate how many days to subtract to get back to Monday
+  const distanceToMonday = currentDay === 0 ? 6 : currentDay - 1
 
-  // Set time to midnight
-  startOfWeek.setHours(0, 0, 0, 0)
+  // Set the time to midnight (00:00:00) on the current day
+  now.setHours(0, 0, 0, 0)
 
-  // Set date to the previous Sunday (start of the week)
-  startOfWeek.setDate(now.getDate() - dayOfWeek)
+  // Subtract the necessary number of days to get to Monday
+  const monday = new Date(now)
+  monday.setDate(now.getDate() - distanceToMonday)
 
-  // Convert the start of the week to a Unix timestamp (in seconds)
-  return Math.floor(startOfWeek.getTime() / 1000)
+  // Return Unix timestamp in seconds (by dividing milliseconds by 1000)
+  return Math.floor(monday.getTime() / 1000)
 }
-
-function getCurrentWeekEndTimestamp() {
+function getCurrentWeekEndTime() {
   const now = new Date()
+  // Get the current day of the week (0 = Sunday, 1 = Monday, etc.)
+  const currentDay = now.getDay()
+  // Calculate how many days to add to get to the upcoming Sunday
+  const distanceToSunday = currentDay === 0 ? 0 : 7 - currentDay
 
-  // Get the current day of the week (0 is Sunday, 1 is Monday, etc.)
-  const dayOfWeek = now.getDay()
+  // Set the time to 23:59:59 on the current day
+  now.setHours(23, 59, 59, 999)
 
-  // Create a new date object set to the current time
-  const endOfWeek = new Date(now)
+  // Add the necessary number of days to get to Sunday
+  const sunday = new Date(now)
+  sunday.setDate(now.getDate() + distanceToSunday)
 
-  // Set date to the next Saturday (end of the week)
-  endOfWeek.setHours(23, 59, 59, 999) // Set to the last millisecond of the day
-  endOfWeek.setDate(now.getDate() + (6 - dayOfWeek)) // Move to next Saturday
-
-  // Convert the end of the week to a Unix timestamp (in seconds)
-  return Math.floor(endOfWeek.getTime() / 1000)
+  // Return Unix timestamp in seconds (by dividing milliseconds by 1000)
+  return Math.floor(sunday.getTime() / 1000)
 }
 
-weekStartTime.value = getCurrentWeekStartTimestamp()
-weekEndTime.value = getCurrentWeekEndTimestamp()
-// Function to fetch the current week's schedule
+const weekEndTimestamp = getCurrentWeekEndTime()
+const weekStartTimestamp = getCurrentWeekStartTime()
+
 const fetchSchedule = async () => {
-  const apiURL = `/api/rest/v1/data/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTime.value}&lesson_date_to=${weekEndTime.value}`
-  const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
+  const apiURL = `/api/rest/v1/data/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTimestamp}&lesson_date_to=${weekEndTimestamp}`
+  const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca'
 
   try {
     const response = await axios.get(apiURL, {
@@ -70,12 +69,12 @@ const fetchSchedule = async () => {
         Authorization: `Bearer ${adminToken}`
       }
     })
-    schedule.value = response.data // Assuming response.data is an array
+    schedule.value = response.data
     lessons.value = schedule.value?.data?.items
   } catch (error) {
     console.error('Error fetching schedule:', error)
   } finally {
-    loading.value = false // Set loading to false after the request completes
+    loading.value = false
   }
 }
 

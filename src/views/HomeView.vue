@@ -17,7 +17,7 @@
         Dars jadvali
       </router-link>
     </div>
-    <div class="absolute bottom-10 text-gray-500 text-sm">
+    <div class="absolute bottom-10 text-gray-900 text-sm">
       © 2024 Namangan Muhandislik Qurilish Instituti. Barcha huquqlar himoyalangan.
     </div>
   </section>

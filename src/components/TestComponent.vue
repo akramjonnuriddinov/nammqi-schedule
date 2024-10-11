@@ -1,4 +1,5 @@
 <template>
+  <!-- {{ orderedLessons }} -->
   <div class="schedule-container">
     <div v-for="day in orderedLessons" :key="day.dayName" class="day-section">
       <h2 class="day-header text-center">{{ day.dayName }}</h2>
@@ -15,7 +16,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(lesson, idx) in day.lessons" :key="generateLessonKey(lesson, idx)">
+          <tr v-for="(lesson, idx) in day.lessons" :key="lesson.id">
+            <!-- Unique key from lesson ID -->
             <td>{{ idx + 1 }}</td>
             <td>{{ lesson.lessonPair.start_time }}</td>
             <td>{{ lesson.lessonPair.end_time }}</td>
@@ -34,7 +36,7 @@
 import { computed } from 'vue'
 
 interface Lesson {
-  id: number
+  id: number // Unique ID for each lesson
   subject: {
     id: number
     name: string
@@ -53,7 +55,7 @@ interface Lesson {
   trainingType: {
     name: string
   }
-  lesson_date: number
+  lesson_date: number // Unix timestamp
 }
 
 interface DayLesson {
@@ -63,20 +65,19 @@ interface DayLesson {
 
 const props = defineProps<{ lessons: Lesson[] }>()
 
+// Get day name from Unix timestamp
 const getDayName = (lessonDate: number): string => {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  const date = new Date(lessonDate * 1000) // Convert timestamp to milliseconds
+  const date = new Date(lessonDate * 1000) // Convert to milliseconds
   return daysOfWeek[date.getDay()]
 }
 
+// Sort lessons by time
 const sortByTime = (lessons: Lesson[]) => {
   return lessons.sort((a, b) => a.lessonPair.start_time.localeCompare(b.lessonPair.start_time))
 }
 
-const generateLessonKey = (lesson: Lesson, idx: number): string => {
-  return `${lesson.lessonPair.start_time}-${lesson.subject.name}-${lesson.employee.name}-${lesson.auditorium.name}-${lesson.lesson_date}-${idx}`
-}
-
+// Group lessons by day, without removing or merging any data
 const orderedLessons = computed((): DayLesson[] => {
   const lessonsByDay = props.lessons.reduce<Record<string, Lesson[]>>((acc, lesson) => {
     const dayName = getDayName(lesson.lesson_date)
@@ -87,7 +88,7 @@ const orderedLessons = computed((): DayLesson[] => {
     return acc
   }, {})
 
-  const daysOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  const daysOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
   return daysOrder.map((day) => ({
     dayName: day,
