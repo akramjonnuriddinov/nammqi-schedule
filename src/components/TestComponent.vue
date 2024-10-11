@@ -192,13 +192,13 @@ const orderedLessons = computed((): DayLesson[] => {
 
 .lesson-table th:nth-child(5),
 .lesson-table td:nth-child(5) {
-  width: 20%; /* Width for Xona */
+  width: 18%; /* Width for Xona */
 }
 
 .lesson-table th:nth-child(6),
 .lesson-table td:nth-child(6) {
   text-align: center;
-  width: 10%; /* Width for Fan turi */
+  width: 12%; /* Width for Fan turi */
 }
 
 .lesson-table th:nth-child(7),
