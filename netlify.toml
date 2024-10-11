@@ -1,0 +1,14 @@
+# Netlify configuration file
+[build]
+  publish = "dist"                           # Directory for the build output
+  command = "npm run build"                  # Build command
+
+# Redirects for proxying API requests
+[[redirects]]
+  from = "/api/*"                            # Match all requests starting with /api/
+  to = "https://student.nammqi.uz/:splat"   # Proxy to the student API
+  status = 200                                # Status for successful requests
+  force = true                                # Force the redirect even if the file exists
+
+  [redirects.headers]
+    Authorization = "Bearer LYStnBw8UonOaDroQF7UlUEpZFpT2_ca" # Include Bearer token
