@@ -1,21 +1,30 @@
 <template>
   <div class="container mx-auto p-4">
-    <!-- "Go Back" Button -->
-    <button
-      @click="$router.go(-1)"
-      class="inline-flex items-center justify-center bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105 duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-300 mb-6"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="w-5 h-5 mr-2"
+    <div class="flex items-center mb-6 gap-5">
+      <button
+        @click="$router.go(-1)"
+        class="inline-flex items-center justify-center bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105 duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-300"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-      Orqaga
-    </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="w-5 h-5 mr-2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        Orqaga
+      </button>
+      <span class="flex w-full font-semibold text-2xl justify-center">
+        Guruh: {{ lessons[0]?.group.name }}</span
+      >
+    </div>
 
     <h1 class="text-2xl text-center font-semibold mb-4">
       Joriy hafta dars jadvali
@@ -93,6 +102,7 @@ const fetchSchedule = async () => {
     })
     schedule.value = response.data
     lessons.value = schedule.value?.data?.items
+    console.log(lessons.value)
   } catch (error) {
     console.error('Error fetching schedule:', error)
   } finally {
