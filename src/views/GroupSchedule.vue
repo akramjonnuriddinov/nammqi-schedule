@@ -1,7 +1,5 @@
 <template>
   <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Joriy hafta dars jadvali</h1>
-
     <!-- "Go Back" Button -->
     <button
       @click="$router.go(-1)"
@@ -18,6 +16,11 @@
       </svg>
       Orqaga
     </button>
+
+    <h1 class="text-2xl text-center font-semibold mb-4">
+      Joriy hafta dars jadvali
+      <span class="italic"> ( {{ currentWeek.start }} / {{ currentWeek.end }} ) </span>
+    </h1>
 
     <!-- Loader or Content -->
     <TheLoader v-if="loading" />
@@ -99,6 +102,35 @@ const fetchSchedule = async () => {
 
 // Fetch schedule on component mount
 onMounted(fetchSchedule)
+
+// Function to get current week start and end dates
+function getCurrentWeekStartAndEnd() {
+  const today = new Date()
+
+  // Get the current day of the week (0-6) where 0 is Sunday and 6 is Saturday
+  const dayOfWeek = today.getDay() // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+  // Assuming week starts on Monday
+  const startOfWeek = new Date(today)
+  const endOfWeek = new Date(today)
+
+  // Set the start of the week (Monday)
+  startOfWeek.setDate(today.getDate() - ((dayOfWeek + 6) % 7)) // Adjust for Monday start
+
+  // Set the end of the week (Sunday)
+  endOfWeek.setDate(startOfWeek.getDate() + 6) // Add 6 days to start of week
+
+  // Format dates to YYYY-MM-DD
+  const formatDate = (date: any) => date.toISOString().split('T')[0]
+
+  return {
+    start: formatDate(startOfWeek),
+    end: formatDate(endOfWeek)
+  }
+}
+
+// Example usage
+const currentWeek = getCurrentWeekStartAndEnd()
 </script>
 
 <style>

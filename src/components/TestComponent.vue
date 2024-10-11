@@ -67,7 +67,15 @@ const props = defineProps<{ lessons: Lesson[] }>()
 
 // Get day name from Unix timestamp
 const getDayName = (lessonDate: number): string => {
-  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  const daysOfWeek = [
+    'Yakshanba', // Sunday
+    'Dushanba', // Monday
+    'Seshanba', // Tuesday
+    'Chorshanba', // Wednesday
+    'Payshanba', // Thursday
+    'Juma', // Friday
+    'Shanba' // Saturday
+  ]
   const date = new Date(lessonDate * 1000) // Convert to milliseconds
   return daysOfWeek[date.getDay()]
 }
@@ -88,7 +96,15 @@ const orderedLessons = computed((): DayLesson[] => {
     return acc
   }, {})
 
-  const daysOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  const daysOrder = [
+    'Dushanba',
+    'Seshanba',
+    'Chorshanba',
+    'Payshanba',
+    'Juma',
+    'Shanba'
+    // 'Yakshanba'
+  ]
 
   return daysOrder.map((day) => ({
     dayName: day,
