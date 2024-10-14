@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto p-4">
-    <div class="flex items-center mb-6 gap-5">
+    <div class="flex items-center mb-10 gap-5">
       <button
         @click="$router.go(-1)"
         class="inline-flex items-center justify-center bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105 duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -21,9 +21,14 @@
         </svg>
         Orqaga
       </button>
-      <span class="flex w-full font-semibold text-2xl justify-center">
-        Guruh: {{ lessons[0]?.group.name }}</span
+      <span
+        class="flex w-full font-bold text-5xl justify-center bg-gradient-to-r from-blue-500 via-teal-500 to-blue-400 bg-clip-text text-transparent relative"
       >
+        Guruh: {{ lessons[0]?.group.name }}
+        <span
+          class="absolute left-1/2 transform -translate-x-1/2 -bottom-1 h-1 bg-gradient-to-r from-teal-500 to-blue-500"
+        ></span>
+      </span>
     </div>
 
     <h1 class="text-2xl text-center font-semibold mb-4">
