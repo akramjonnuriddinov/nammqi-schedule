@@ -42,6 +42,16 @@ const defaultOptions = {
   renderer: 'svg',
   animationData: AnimationJson
 }
+
+fetch('http://localhost:3000/api/schedule')
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Schedule data:', data)
+    // Use the data in your frontend
+  })
+  .catch((error) => {
+    console.error('Error fetching schedule data:', error)
+  })
 </script>
 
 <style>
