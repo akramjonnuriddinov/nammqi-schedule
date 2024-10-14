@@ -2,7 +2,7 @@
   <section
     class="min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
     style="
-      background-image: url('https://images.pexels.com/photos/196650/pexels-photo-196650.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+      background-image: url('https://images.unsplash.com/photo-1595489154995-75e074c8ef20?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     "
   >
     <div class="bg-white bg-opacity-90 p-12 rounded-3xl shadow-lg text-center">

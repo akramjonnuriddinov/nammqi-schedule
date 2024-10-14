@@ -1,23 +1,34 @@
 <template>
-  <main class="main-content min-h-screen flex flex-col items-center justify-center bg-white">
-    <div class="relative z-10 text-center mt-10">
-      <img src="@/assets/images/logo-uz.png" alt="University Logo" class="mx-auto mb-4 w-20 h-20" />
-      <h1 class="text-2xl font-bold text-gray-800">Namangan Muhandislik Qurilish Instituti</h1>
-      <p class="text-gray-600">Darslar jadvali</p>
+  <main class="main-content min-h-screen flex items-center justify-center bg-white relative">
+    <!-- Flex Container for Image and Text -->
+    <div class="flex flex-col md:flex-row items-center justify-between w-full px-8 z-10">
+      <!-- Left Section (Image/Animation) -->
+      <div class="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
+        <AppAnimation :options="defaultOptions" :width="500" :speed="1" />
+      </div>
+
+      <!-- Right Section (Text and Button) -->
+      <div class="w-full md:w-1/2 text-center md:text-left">
+        <img
+          src="@/assets/images/logo-uz.png"
+          alt="University Logo"
+          class="mx-auto md:mx-0 mb-4 w-20 h-20"
+        />
+        <h1 class="text-3xl mb-4 font-extrabold text-gray-800 leading-tight">
+          Namangan Muhandislik Qurilish Instituti
+        </h1>
+        <p class="text-gray-600 text-lg mb-6">Darslar jadvali</p>
+        <router-link
+          to="/schedule"
+          class="home-btn bg-gradient-to-r from-teal-400 to-blue-600 text-white py-2 px-8 rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-105 transition transform duration-300"
+        >
+          Boshlash
+        </router-link>
+      </div>
     </div>
 
-    <div class="relative z-10 mt-6">
-      <router-link
-        to="/schedule"
-        class="home-btn bg-blue-500 text-white py-2 px-8 rounded-lg text-lg shadow-lg hover:bg-blue-600 transition"
-      >
-        Boshlash
-      </router-link>
-    </div>
-
-    <div class="relative z-10 mt-8">
-      <AppAnimation :options="defaultOptions" :width="500" :speed="1" />
-    </div>
+    <!-- Background Hexagon Overlay -->
+    <div class="absolute inset-0 bg-hex-pattern z-0"></div>
   </main>
 </template>
 
@@ -26,7 +37,7 @@ import AppAnimation from '@/components/AppAnimation.vue'
 import AnimationJson from '@/assets/animation/Schedule2.json'
 
 const defaultOptions = {
-  loop: false,
+  loop: false, // Continuous loop
   autoplay: true,
   renderer: 'svg',
   animationData: AnimationJson
@@ -36,13 +47,8 @@ const defaultOptions = {
 <style>
 .home-btn {
   border-radius: 30px;
-  display: inline-block;
-  font-size: 60px;
-  font-weight: 600;
-  margin-top: 50px;
-  font-size: 24px;
-  margin-top: 20px;
-  padding: 10px 50px;
+  font-weight: 500;
+  padding: 12px 48px;
 }
 
 .main-content {
@@ -50,6 +56,13 @@ const defaultOptions = {
   background-position: 0 100%;
   background-size: contain;
   background-repeat: repeat-y;
-  min-height: 100vh;
+}
+
+.bg-hex-pattern {
+  background-image: url('@/assets/images/hexagons-background.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+  opacity: 0.2;
 }
 </style>
