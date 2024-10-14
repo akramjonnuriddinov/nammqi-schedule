@@ -14,7 +14,7 @@
             <th>O‘qituvchi</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="lessons.length != 0">
           <tr v-for="(lesson, idx) in day.lessons" :key="lesson.id">
             <!-- Unique key from lesson ID -->
             <td>{{ idx + 1 }}</td>
@@ -24,6 +24,18 @@
             <td>{{ lesson.auditorium.name }}</td>
             <td>{{ lesson.trainingType.name }}</td>
             <td>{{ lesson.employee.name }}</td>
+          </tr>
+        </tbody>
+        <tbody v-else>
+          <tr>
+            <!-- Unique key from lesson ID -->
+            <td>1</td>
+            <td>00:00</td>
+            <td>00:00</td>
+            <td>Dars jadvali mavjud emas</td>
+            <td>Yo'q</td>
+            <td>Yo'q</td>
+            <td>Yo'q</td>
           </tr>
         </tbody>
       </table>
