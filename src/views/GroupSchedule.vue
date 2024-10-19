@@ -78,7 +78,7 @@ const weekEndTimestamp = getCurrentWeekEndTime()
 const weekStartTimestamp = getCurrentWeekStartTime()
 
 const fetchSchedule = async () => {
-  const apiURL = `/api/rest/v1/data/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTimestamp}&lesson_date_to=${weekEndTimestamp}`
+  const apiURL = `http://192.168.10.100:8000/api/hemis/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTimestamp}&lesson_date_to=${weekEndTimestamp}`
   const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca'
 
   try {

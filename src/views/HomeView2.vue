@@ -43,7 +43,7 @@ const defaultOptions = {
   animationData: AnimationJson
 }
 
-fetch('http://localhost:3000/api/schedule')
+fetch('http://192.168.10.100:8000/api/hemis/department-list?limit=200')
   .then((response) => response.json())
   .then((data) => {
     console.log('Schedule data:', data)

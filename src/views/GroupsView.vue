@@ -67,7 +67,7 @@ const departmentId = route.params.id // Get the department ID from the route
 
 // Function to fetch groups based on the department ID
 const fetchGroups = async () => {
-  const apiURL = `/api/rest/v1/data/group-list?limit=200&_department=${departmentId}` // Use the proxied API URL
+  const apiURL = `http://192.168.10.100:8000/api/hemis/group-list?limit=200&_department=${departmentId}` // Use the proxied API URL
   const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
 
   try {

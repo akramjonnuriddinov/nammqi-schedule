@@ -42,7 +42,7 @@ import axios from 'axios'
 import TheLoader from '@/components/TheLoader.vue'
 import BackButton from '@/components/BackButton.vue'
 
-const apiURL = '/api/rest/v1/data/department-list?limit=200&_structure_type=11'
+const apiURL = 'http://192.168.10.100:8000/api/hemis/department-list?limit=200&_structure_type=11'
 const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
 
 const data = ref<any>(null)
