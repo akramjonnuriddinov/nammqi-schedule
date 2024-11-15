@@ -17,7 +17,7 @@
         <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-800">
           Namangan muhandislik-qurilish instituti
         </h1>
-        <p class="mb-6 text-lg text-gray-600">
+        <p class="mb-6 text-sm text-gray-600">
           Dars jadvali (Dasturiy ta'minot HEMIS - Oliy ta’lim jarayonlarini boshqarish axborot
           tizimi bilan integratsiya qilingan)
         </p>
@@ -29,7 +29,6 @@
         </router-link>
       </div>
     </div>
-
     <!-- Background Hexagon Overlay -->
     <div class="absolute inset-0 z-0 bg-hex-pattern"></div>
   </main>
