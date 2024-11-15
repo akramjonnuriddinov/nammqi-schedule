@@ -8,12 +8,8 @@
       </div>
 
       <!-- Right Section (Text and Button) -->
-      <div class="w-full text-center md:w-1/2 md:text-left">
-        <img
-          src="@/assets/images/logo-uz.png"
-          alt="University Logo"
-          class="w-20 h-20 mx-auto mb-4 md:mx-0"
-        />
+      <div class="flex flex-col items-center w-full text-center md:w-1/2 md:text-left">
+        <img src="@/assets/images/logo-uz.png" alt="University Logo" class="mb-4 w-28 h-28" />
         <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-800">
           Namangan muhandislik-qurilish instituti
         </h1>
