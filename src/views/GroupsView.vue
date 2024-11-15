@@ -28,7 +28,7 @@
     <TheLoader v-if="loading" />
 
     <div v-else>
-      <div v-if="filteredGroups.length > 0" class="max-w-2xl mx-auto">
+      <div v-if="filteredGroups?.length > 0" class="max-w-2xl mx-auto">
         <ul class="space-y-4">
           <li
             v-for="(group, index) in filteredGroups"
