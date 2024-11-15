@@ -1,12 +1,12 @@
 <template>
   <section class="min-h-screen py-10 bg-gray-50">
-    <div class="max-w-2xl mx-auto mb-4">
+    <div class="max-w-2xl px-5 mx-auto mb-4">
       <BackButton />
     </div>
     <h1 class="mb-6 text-3xl font-bold text-center text-gray-800">Fakultetingizni tanlang</h1>
     <the-loader v-if="loading" />
     <div v-else>
-      <div v-if="departments" class="max-w-2xl mx-auto">
+      <div v-if="departments" class="max-w-2xl px-5 mx-auto">
         <ul class="flex flex-col gap-2 space-y-4">
           <li
             v-for="(item, index) in departments"
@@ -39,13 +39,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 import TheLoader from '@/components/TheLoader.vue'
 import BackButton from '@/components/BackButton.vue'
 
 const apiURL = 'https://hemisback.nammqi.uz/api/hemis/department-list?limit=200&_structure_type=11'
-const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
+const adminToken = ''
 
 const departments = [
   {
@@ -160,7 +160,3 @@ const fetchDepartments = async () => {
 
 // onMounted(fetchDepartments)
 </script>
-
-<style scoped>
-/* You can add additional scoped styles if needed */
-</style>

@@ -16,7 +16,7 @@
     <h1 class="mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang:</h1>
     <BackButton />
     <!-- Search Input -->
-    <div class="max-w-2xl mx-auto mb-4">
+    <div class="max-w-2xl px-5 mx-auto mb-4">
       <input
         type="text"
         v-model="searchQuery"
@@ -28,7 +28,7 @@
     <TheLoader v-if="loading" />
 
     <div v-else>
-      <div v-if="filteredGroups?.length > 0" class="max-w-2xl mx-auto">
+      <div v-if="filteredGroups?.length > 0" class="max-w-2xl px-5 mx-auto">
         <ul class="space-y-4">
           <li
             v-for="(group, index) in filteredGroups"
@@ -36,7 +36,7 @@
             class="flex items-center p-4 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105"
           >
             <span
-              class="flex items-center justify-center w-10 h-10 mr-4 text-white bg-blue-500 rounded-full"
+              class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-blue-500 rounded-full"
             >
               {{ index + 1 }}
             </span>
@@ -81,7 +81,7 @@ const departmentId = route.params.id // Get the department ID from the route
 // Function to fetch groups based on the department ID
 const fetchGroups = async () => {
   const apiURL = `https://hemisback.nammqi.uz/api/hemis/group-list?limit=200&_department=${departmentId}` // Use the proxied API URL
-  const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
+  const adminToken = '' // Replace with actual token
 
   try {
     const response = await axios.get(apiURL, {

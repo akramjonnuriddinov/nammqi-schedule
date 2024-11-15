@@ -21,12 +21,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
-// No specific logic needed for a static view.
-</script>
-
 <style scoped>
-/* Full screen background style */
 html,
 body {
   height: 100%;

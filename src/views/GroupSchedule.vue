@@ -19,7 +19,7 @@
 
     <!-- Loader or Content -->
     <TheLoader v-if="loading" />
-    <TestComponent v-else :lessons="lessons" />
+    <TheTable v-else :lessons="lessons" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useRoute } from 'vue-router'
-import TestComponent from '@/components/TestComponent.vue'
+import TheTable from '@/components/TheTable.vue'
 import TheLoader from '@/components/TheLoader.vue'
 import BackButton from '@/components/BackButton.vue'
 
@@ -79,7 +79,7 @@ const weekStartTimestamp = getCurrentWeekStartTime()
 
 const fetchSchedule = async () => {
   const apiURL = `https://hemisback.nammqi.uz/api/hemis/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTimestamp}&lesson_date_to=${weekEndTimestamp}`
-  const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca'
+  const adminToken = ''
 
   try {
     const response = await axios.get(apiURL, {
@@ -89,7 +89,6 @@ const fetchSchedule = async () => {
     })
     schedule.value = response.data
     lessons.value = schedule.value?.data?.items
-    console.log(lessons.value)
   } catch (error) {
     console.error('Error fetching schedule:', error)
   } finally {
