@@ -1,6 +1,6 @@
 <template>
-  <section class="bg-gray-50 py-10 min-h-screen">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Guruhingizni tanlang</h1>
+  <section class="min-h-screen py-10 bg-gray-50">
+    <h1 class="mb-6 text-3xl font-bold text-center text-gray-800">Guruhingizni tanlang</h1>
     <BackButton />
     <!-- Search Input -->
     <div class="max-w-2xl mx-auto mb-4">
@@ -20,10 +20,10 @@
           <li
             v-for="(group, index) in filteredGroups"
             :key="group.id"
-            class="bg-white shadow-md rounded-lg p-4 flex items-center transition-transform transform hover:scale-105"
+            class="flex items-center p-4 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105"
           >
             <span
-              class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4"
+              class="flex items-center justify-center w-10 h-10 mr-4 text-white bg-blue-500 rounded-full"
             >
               {{ index + 1 }}
             </span>
@@ -42,7 +42,7 @@
         </ul>
       </div>
 
-      <div v-else class="max-w-2xl mx-auto text-center py-4 text-gray-600">No groups found.</div>
+      <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">No groups found.</div>
     </div>
   </section>
 </template>
@@ -67,7 +67,7 @@ const departmentId = route.params.id // Get the department ID from the route
 
 // Function to fetch groups based on the department ID
 const fetchGroups = async () => {
-  const apiURL = `http://192.168.10.100:8000/api/hemis/group-list?limit=200&_department=${departmentId}` // Use the proxied API URL
+  const apiURL = `https://hemisback.nammqi.uz/api/hemis/group-list?limit=200&_department=${departmentId}` // Use the proxied API URL
   const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca' // Replace with actual token
 
   try {

@@ -1,18 +1,18 @@
 <template>
-  <div class="container mx-auto p-4">
-    <div class="flex items-center mb-10 gap-5">
+  <div class="container p-4 mx-auto">
+    <div class="flex items-center gap-5 mb-10">
       <BackButton />
       <span
-        class="flex w-full font-bold text-5xl justify-center bg-gradient-to-r from-blue-500 via-teal-500 to-blue-400 bg-clip-text text-transparent relative"
+        class="relative flex justify-center w-full text-5xl font-bold text-transparent bg-gradient-to-r from-blue-500 via-teal-500 to-blue-400 bg-clip-text"
       >
         Guruh: {{ lessons[0]?.group.name }}
         <span
-          class="absolute left-1/2 transform -translate-x-1/2 -bottom-1 h-1 bg-gradient-to-r from-teal-500 to-blue-500"
+          class="absolute h-1 transform -translate-x-1/2 left-1/2 -bottom-1 bg-gradient-to-r from-teal-500 to-blue-500"
         ></span>
       </span>
     </div>
 
-    <h1 class="text-2xl text-center font-semibold mb-4">
+    <h1 class="mb-4 text-2xl font-semibold text-center">
       Joriy hafta dars jadvali
       <span class="italic"> ( {{ currentWeek.start }} / {{ currentWeek.end }} ) </span>
     </h1>
@@ -78,7 +78,7 @@ const weekEndTimestamp = getCurrentWeekEndTime()
 const weekStartTimestamp = getCurrentWeekStartTime()
 
 const fetchSchedule = async () => {
-  const apiURL = `http://192.168.10.100:8000/api/hemis/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTimestamp}&lesson_date_to=${weekEndTimestamp}`
+  const apiURL = `https://hemisback.nammqi.uz/api/hemis/schedule-list?_group=${groupId}&lesson_date_from=${weekStartTimestamp}&lesson_date_to=${weekEndTimestamp}`
   const adminToken = 'LYStnBw8UonOaDroQF7UlUEpZFpT2_ca'
 
   try {
