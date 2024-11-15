@@ -1,26 +1,29 @@
 <template>
-  <main class="main-content min-h-screen flex items-center justify-center bg-white relative">
+  <main class="relative flex items-center justify-center min-h-screen bg-white main-content">
     <!-- Flex Container for Image and Text -->
-    <div class="flex flex-col md:flex-row items-center justify-between w-full px-8 z-10">
+    <div class="z-10 flex flex-col items-center justify-between w-full px-8 md:flex-row">
       <!-- Left Section (Image/Animation) -->
-      <div class="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
+      <div class="flex justify-center w-full mb-8 md:w-1/2 md:mb-0">
         <AppAnimation :options="defaultOptions" :width="500" :speed="1" />
       </div>
 
       <!-- Right Section (Text and Button) -->
-      <div class="w-full md:w-1/2 text-center md:text-left">
+      <div class="w-full text-center md:w-1/2 md:text-left">
         <img
           src="@/assets/images/logo-uz.png"
           alt="University Logo"
-          class="mx-auto md:mx-0 mb-4 w-20 h-20"
+          class="w-20 h-20 mx-auto mb-4 md:mx-0"
         />
-        <h1 class="text-3xl mb-4 font-extrabold text-gray-800 leading-tight">
-          Namangan Muhandislik Qurilish Instituti
+        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-800">
+          Namangan muhandislik-qurilish instituti
         </h1>
-        <p class="text-gray-600 text-lg mb-6">Darslar jadvali</p>
+        <p class="mb-6 text-lg text-gray-600">
+          Dars jadvali (Dasturiy ta'minot HEMIS - Oliy ta’lim jarayonlarini boshqarish axborot
+          tizimi bilan integratsiya qilingan)
+        </p>
         <router-link
           to="/schedule"
-          class="home-btn bg-gradient-to-r from-teal-400 to-blue-600 text-white py-2 px-8 rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-105 transition transform duration-300"
+          class="px-8 py-2 text-lg text-white transition duration-300 transform rounded-full shadow-lg home-btn bg-gradient-to-r from-teal-400 to-blue-600 hover:shadow-xl hover:scale-105"
         >
           Boshlash
         </router-link>
@@ -28,8 +31,11 @@
     </div>
 
     <!-- Background Hexagon Overlay -->
-    <div class="absolute inset-0 bg-hex-pattern z-0"></div>
+    <div class="absolute inset-0 z-0 bg-hex-pattern"></div>
   </main>
+  <p class="absolute bottom-0 w-full py-2 text-center text-gray-500">
+    &copy; Dasturiy ta'minot: Raqamli ta'lim texnologiyalar markazi tomonidan ishlab chiqilgan.
+  </p>
 </template>
 
 <script setup lang="ts">

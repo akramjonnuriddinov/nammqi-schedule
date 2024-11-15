@@ -1,6 +1,19 @@
 <template>
   <section class="min-h-screen py-10 bg-gray-50">
-    <h1 class="mb-6 text-3xl font-bold text-center text-gray-800">Guruhingizni tanlang</h1>
+    <!-- <span>{{ filteredGroups }}</span> -->
+    <h1 v-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
+      {{ filteredGroups[0].department.name }}
+      <span
+        v-if="
+          filteredGroups[0].department?.id == 7 ||
+          filteredGroups[0].department?.id == 20 ||
+          filteredGroups[0].department?.id == 21
+        "
+        >bo'limi</span
+      >
+      <span v-else>fakulteti</span>
+    </h1>
+    <h1 class="mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang:</h1>
     <BackButton />
     <!-- Search Input -->
     <div class="max-w-2xl mx-auto mb-4">
@@ -34,7 +47,7 @@
                   id: group.id
                 }
               }"
-              class="text-lg font-semibold text-blue-500 hover:text-blue-700"
+              class="w-full text-lg font-semibold text-blue-500 hover:text-blue-700"
             >
               {{ group.name }}
             </router-link>
