@@ -1,6 +1,5 @@
 <template>
   <section class="min-h-screen py-10 bg-gray-50">
-    <!-- <span>{{ filteredGroups }}</span> -->
     <h1 v-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
       {{ filteredGroups[0].department.name }}
       <span
