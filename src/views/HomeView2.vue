@@ -32,7 +32,7 @@
     <!-- Background Hexagon Overlay -->
     <div class="absolute inset-0 z-0 bg-hex-pattern"></div>
   </main>
-  <p class="absolute bottom-0 w-full py-2 text-center text-gray-500">
+  <p class="absolute bottom-0 w-full py-2 text-center text-gray-500 max-[800px]:static">
     &copy; Dasturiy ta'minot: Raqamli ta'lim texnologiyalar markazi tomonidan ishlab chiqilgan.
   </p>
 </template>
