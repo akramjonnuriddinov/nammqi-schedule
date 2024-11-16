@@ -16,7 +16,7 @@
       <span v-else>fakulteti</span>
     </h2>
     <h2 v-else-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
-      No department found.
+      Guruh topilmadi!
     </h2>
     <span class="block mb-6 text-lg font-bold text-center text-gray-800"
       >Guruhingizni tanlang:</span
@@ -73,7 +73,7 @@
           </div>
         </div>
 
-        <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">No groups found.</div>
+        <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">Guruh topilmadi!</div>
       </div>
     </div>
   </section>
