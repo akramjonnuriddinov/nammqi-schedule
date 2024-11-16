@@ -5,9 +5,11 @@
         {{ key }}
       </button>
     </div>
-    <button class="key special" @click="handleKeyPress('Backspace')">←</button>
-    <button class="key special" @click="handleKeyPress('Space')">Space</button>
-    <button class="key special" @click="closeKeyboard">Close</button>
+    <div class="flex justify-center gap-4">
+      <button class="key special" @click="handleKeyPress('Backspace')">←</button>
+      <button class="key special" @click="handleKeyPress('Space')">Space</button>
+      <button class="key special" @click="closeKeyboard">Close</button>
+    </div>
   </div>
 </template>
 
@@ -62,6 +64,7 @@ export default defineComponent({
 .keyboard {
   display: flex;
   flex-direction: column;
+  max-width: 600px;
   gap: 8px;
   background: #f4f4f4;
   padding: 16px;
@@ -81,6 +84,8 @@ export default defineComponent({
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-size: 1rem;
+  max-width: 100px;
+  width: 100%;
 }
 .key.special {
   background: #e0e0e0;

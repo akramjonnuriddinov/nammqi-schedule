@@ -1,6 +1,6 @@
 <template>
-  <section class="min-h-screen py-10 bg-gray-50">
-    <h1
+  <section @click="showKeyboard = false" class="min-h-screen py-10 bg-gray-50">
+    <h2
       v-if="!loading && filteredGroups.length > 0"
       class="mb-6 text-3xl font-bold text-center text-gray-800"
     >
@@ -14,39 +14,45 @@
         >bo'limi</span
       >
       <span v-else>fakulteti</span>
-    </h1>
-    <h1 v-else-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
+    </h2>
+    <h2 v-else-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
       No department found.
-    </h1>
-
-    <h1 class="mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang:</h1>
-    <BackButton />
-    <div class="max-w-2xl px-5 mx-auto mb-4">
-      <input
-        type="text"
-        v-model="searchQuery"
-        placeholder="Guruhingiz nomini yozing..."
-        class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        @focus="showKeyboard = true"
-      />
-      <OnlineKeyboard
-        v-if="showKeyboard"
-        :visible="showKeyboard"
-        :targetInput="searchQuery"
-        @update:input="updateSearchQuery"
-        @close="closeKeyboard"
-      />
-    </div>
-
-    <TheLoader v-if="loading" />
-
-    <div v-else>
-      <div v-if="filteredGroups?.length > 0" class="max-w-2xl px-5 mx-auto">
-        <ul class="space-y-4">
-          <li
+    </h2>
+    <span class="block mb-6 text-lg font-bold text-center text-gray-800"
+      >Guruhingizni tanlang:</span
+    >
+    <div class="container mx-auto">
+      <BackButton />
+      <div @click.stop class="mb-5">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="Guruhingiz nomini yozing..."
+          class="w-full p-3 mb-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          @focus="showKeyboard = true"
+        />
+        <OnlineKeyboard
+          v-if="showKeyboard"
+          :visible="showKeyboard"
+          :targetInput="searchQuery"
+          @update:input="updateSearchQuery"
+          @close="closeKeyboard"
+          class="keyboard"
+        />
+      </div>
+      <TheLoader v-if="loading" />
+      <div v-else>
+        <div
+          v-if="filteredGroups?.length > 0"
+          class="grid grid-cols-1 gap-4 groups sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          :class="{
+            'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4': !showKeyboard
+          }"
+        >
+          <div
             v-for="(group, index) in filteredGroups"
             :key="group.id"
-            class="flex items-center p-4 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105"
+            class="flex items-center p-4 transition-transform transform bg-white border border-gray-300 rounded-md hover:scale-105"
           >
             <span
               class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-blue-500 rounded-full"
@@ -64,11 +70,11 @@
             >
               {{ group.name }}
             </router-link>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </div>
 
-      <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">No groups found.</div>
+        <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">No groups found.</div>
+      </div>
     </div>
   </section>
 </template>
@@ -131,3 +137,24 @@ const filteredGroups = computed(() => {
 // Fetch groups when the component is mounted
 onMounted(fetchGroups)
 </script>
+
+<style scoped>
+.keyboard,
+.groups {
+  transition: transform 0.4s ease;
+  position: relative;
+}
+
+.keyboard {
+  /* transform: translateX(100%); */
+}
+
+.groups {
+  transform: translateX(0%);
+}
+
+/* Animation for focused input */
+input:focus + .keyboard {
+  transform: translateX(0%);
+}
+</style>
