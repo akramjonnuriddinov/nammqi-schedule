@@ -71,7 +71,7 @@ export default defineComponent({
 .keyboard {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 700px;
   gap: 8px;
   background: #f4f4f4;
   padding: 16px;

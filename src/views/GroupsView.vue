@@ -24,8 +24,14 @@
     <div class="container mx-auto">
       <BackButton />
     </div>
-    <div class="container mx-auto">
-      <div @click.stop class="mb-5">
+    <div
+      @click.stop
+      class="container mx-auto"
+      :class="{
+        'flex gap-4': showKeyboard
+      }"
+    >
+      <div class="mb-5" :class="{ 'w-[700px]': showKeyboard }">
         <input
           type="text"
           v-model="searchQuery"
@@ -42,14 +48,15 @@
           class="keyboard"
         />
       </div>
-      <div class="groups">
+      <div class="w-full groups">
         <TheLoader v-if="loading" />
         <div v-else>
           <div
             v-if="filteredGroups?.length > 0"
-            class="grid grid-cols-1 gap-4 groups sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            class="grid gap-4 groups"
             :class="{
-              'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4': !showKeyboard
+              'grid-cols-2': showKeyboard, // 2 columns when showKeyboard is true
+              'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4': !showKeyboard // Default grid layout
             }"
           >
             <div
