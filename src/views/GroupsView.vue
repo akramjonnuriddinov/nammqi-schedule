@@ -23,6 +23,8 @@
     >
     <div class="container mx-auto">
       <BackButton />
+    </div>
+    <div class="container mx-auto">
       <div @click.stop class="mb-5">
         <input
           type="text"
@@ -40,40 +42,44 @@
           class="keyboard"
         />
       </div>
-      <TheLoader v-if="loading" />
-      <div v-else>
-        <div
-          v-if="filteredGroups?.length > 0"
-          class="grid grid-cols-1 gap-4 groups sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-          :class="{
-            'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4': !showKeyboard
-          }"
-        >
+      <div class="groups">
+        <TheLoader v-if="loading" />
+        <div v-else>
           <div
-            v-for="(group, index) in filteredGroups"
-            :key="group.id"
-            class="flex items-center p-4 transition-transform transform bg-white border border-gray-300 rounded-md hover:scale-105"
+            v-if="filteredGroups?.length > 0"
+            class="grid grid-cols-1 gap-4 groups sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            :class="{
+              'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4': !showKeyboard
+            }"
           >
-            <span
-              class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-blue-500 rounded-full"
+            <div
+              v-for="(group, index) in filteredGroups"
+              :key="group.id"
+              class="flex items-center p-4 transition-transform transform bg-white border border-gray-300 rounded-md hover:scale-105"
             >
-              {{ index + 1 }}
-            </span>
-            <router-link
-              :to="{
-                name: 'group',
-                params: {
-                  id: group.id
-                }
-              }"
-              class="w-full text-lg font-semibold text-blue-500 hover:text-blue-700"
-            >
-              {{ group.name }}
-            </router-link>
+              <span
+                class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-blue-500 rounded-full"
+              >
+                {{ index + 1 }}
+              </span>
+              <router-link
+                :to="{
+                  name: 'group',
+                  params: {
+                    id: group.id
+                  }
+                }"
+                class="w-full text-lg font-semibold text-blue-500 hover:text-blue-700"
+              >
+                {{ group.name }}
+              </router-link>
+            </div>
+          </div>
+
+          <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">
+            Guruh topilmadi!
           </div>
         </div>
-
-        <div v-else class="max-w-2xl py-4 mx-auto text-center text-gray-600">Guruh topilmadi!</div>
       </div>
     </div>
   </section>
@@ -145,16 +151,7 @@ onMounted(fetchGroups)
   position: relative;
 }
 
-.keyboard {
-  /* transform: translateX(100%); */
-}
-
 .groups {
-  transform: translateX(0%);
-}
-
-/* Animation for focused input */
-input:focus + .keyboard {
   transform: translateX(0%);
 }
 </style>
