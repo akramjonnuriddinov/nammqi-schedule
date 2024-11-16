@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import KeyboardAudio from '@/assets/key-1.mp3'
 
 export default defineComponent({
   name: 'OnlineKeyboard',
@@ -37,7 +38,13 @@ export default defineComponent({
       ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
     ])
 
+    // Create an audio element for the keyboard sound
+    const sound = new Audio(KeyboardAudio) // Replace with the path to your sound file
+
     const handleKeyPress = (key: string) => {
+      // Play sound on button press
+      sound.play()
+
       if (key === 'Backspace') {
         emit('update:input', props.targetInput.slice(0, -1))
       } else if (key === 'Space') {
