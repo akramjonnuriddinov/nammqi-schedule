@@ -14,7 +14,6 @@
     </h1>
     <h1 class="mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang:</h1>
     <BackButton />
-    <!-- Search Input -->
     <div class="max-w-2xl px-5 mx-auto mb-4">
       <input
         type="text"
@@ -66,21 +65,17 @@ import axios from 'axios'
 import TheLoader from '@/components/TheLoader.vue'
 import BackButton from '@/components/BackButton.vue'
 
-// Reactive variables for groups data and loading state
 const groups = ref<any[]>([]) // Initialize as an empty array
 const loading = ref(true) // Set loading to true initially
 
-// Search query for filtering the groups
 const searchQuery = ref('')
 
-// Get the current route to access the department ID
 const route = useRoute()
 const departmentId = route.params.id // Get the department ID from the route
 
-// Function to fetch groups based on the department ID
 const fetchGroups = async () => {
   const apiURL = `https://hemisback.nammqi.uz/api/hemis/group-list?limit=200&_department=${departmentId}` // Use the proxied API URL
-  const adminToken = '' // Replace with actual token
+  const adminToken = ''
 
   try {
     const response = await axios.get(apiURL, {
@@ -89,18 +84,17 @@ const fetchGroups = async () => {
       }
     })
     if (response.data.success) {
-      groups.value = response.data.data.items // Assign the fetched groups to the groups reactive variable
+      groups.value = response.data.data.items
     } else {
       console.error('Failed to fetch groups:', response.data)
     }
   } catch (error) {
     console.error('Error fetching data:', error)
   } finally {
-    loading.value = false // Set loading to false after the request completes
+    loading.value = false
   }
 }
 
-// Computed property for filtering the groups by search query
 const filteredGroups = computed(() => {
   if (!searchQuery.value) {
     return groups.value
