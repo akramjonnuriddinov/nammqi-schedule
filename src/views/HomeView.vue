@@ -1,7 +1,7 @@
 <template>
   <main class="relative flex items-center justify-center min-h-screen bg-white main-content">
     <!-- Flex Container for Image and Text -->
-    <div class="z-10 flex flex-col items-center justify-between w-full px-8 md:flex-row">
+    <div class="z-10 flex flex-col items-start justify-between w-full px-8 md:flex-row">
       <!-- Left Section (Image/Animation) -->
       <div class="flex justify-center w-full mb-8 md:w-1/2 md:mb-0">
         <AppAnimation :options="defaultOptions" :width="500" :speed="1" />
@@ -9,8 +9,8 @@
 
       <!-- Right Section (Text and Button) -->
       <div class="flex flex-col items-center w-full text-center md:w-1/2 md:text-left">
-        <img src="@/assets/images/logo-uz.png" alt="University Logo" class="mb-4 w-28 h-28" />
-        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-800">
+        <img src="@/assets/images/logo-uz.png" alt="University Logo" class="mb-4 w-44 h44w-40" />
+        <h1 class="mb-4 text-6xl font-extrabold leading-tight text-center text-gray-800">
           Namangan muhandislik-qurilish instituti
         </h1>
         <p class="mb-6 text-sm text-gray-600">

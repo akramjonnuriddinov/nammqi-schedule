@@ -1,6 +1,9 @@
 <template>
   <section class="min-h-screen py-10 bg-gray-50">
-    <h1 v-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
+    <h1
+      v-if="!loading && filteredGroups.length > 0"
+      class="mb-6 text-3xl font-bold text-center text-gray-800"
+    >
       {{ filteredGroups[0].department.name }}
       <span
         v-if="
@@ -12,6 +15,10 @@
       >
       <span v-else>fakulteti</span>
     </h1>
+    <h1 v-else-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
+      No department found.
+    </h1>
+
     <h1 class="mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang:</h1>
     <BackButton />
     <div class="max-w-2xl px-5 mx-auto mb-4">
@@ -20,6 +27,14 @@
         v-model="searchQuery"
         placeholder="Guruhingiz nomini yozing..."
         class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        @focus="showKeyboard = true"
+      />
+      <OnlineKeyboard
+        v-if="showKeyboard"
+        :visible="showKeyboard"
+        :targetInput="searchQuery"
+        @update:input="updateSearchQuery"
+        @close="closeKeyboard"
       />
     </div>
 
@@ -64,11 +79,20 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 import TheLoader from '@/components/TheLoader.vue'
 import BackButton from '@/components/BackButton.vue'
+import OnlineKeyboard from '@/components/OnlineKeyboard.vue'
 
 const groups = ref<any[]>([]) // Initialize as an empty array
 const loading = ref(true) // Set loading to true initially
 
 const searchQuery = ref('')
+const showKeyboard = ref(false)
+const updateSearchQuery = (value: string) => {
+  searchQuery.value = value
+}
+
+const closeKeyboard = () => {
+  showKeyboard.value = false
+}
 
 const route = useRoute()
 const departmentId = route.params.id // Get the department ID from the route
