@@ -9,19 +9,27 @@
 
       <!-- Right Section (Text and Button) -->
       <div class="flex flex-col items-center w-full text-center md:w-1/2 md:text-left">
-        <img src="@/assets/images/logo-uz.png" alt="University Logo" class="mb-4 w-44 h44w-40" />
+        <img src="@/assets/images/logo-uz.png" alt="University Logo" class="w-56 mb-4 h-5w-56" />
         <h1 class="mb-4 text-6xl font-extrabold leading-tight text-center text-gray-800">
           Namangan muhandislik-qurilish instituti
         </h1>
-        <p class="mb-6 text-sm text-gray-600">
+        <p class="mb-6 text-sm text-center text-gray-600">
           Dars jadvali (Dasturiy ta'minot HEMIS - Oliy ta’lim jarayonlarini boshqarish axborot
           tizimi bilan integratsiya qilingan)
         </p>
+        <!-- <p class="mb-6 text-sm text-center text-gray-600">
+          Lesson schedule (software integrated with HEMIS - higher education process management
+          information system)
+        </p>
+        <p class="mb-6 text-sm text-center text-gray-600">
+          Расписание уроков (программное обеспечение, интегрированное с HEMIS — информационной
+          системой управления процессом высшего образования)
+        </p> -->
         <router-link
           to="/schedule"
           class="px-8 py-2 text-lg text-white transition duration-300 transform rounded-full shadow-lg home-btn bg-gradient-to-r from-teal-400 to-blue-600 hover:shadow-xl hover:scale-105"
         >
-          Boshlash
+          Ko‘rish
         </router-link>
       </div>
     </div>

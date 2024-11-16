@@ -18,9 +18,7 @@
     <h2 v-else-if="!loading" class="mb-6 text-3xl font-bold text-center text-gray-800">
       Guruh topilmadi!
     </h2>
-    <span class="block mb-6 text-lg font-bold text-center text-gray-800"
-      >Guruhingizni tanlang:</span
-    >
+    <span class="block mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang</span>
     <div class="container mx-auto">
       <BackButton />
     </div>
