@@ -27,9 +27,9 @@
         </p> -->
         <router-link
           to="/schedule"
-          class="px-8 py-2 text-lg text-white transition duration-300 transform rounded-full shadow-lg home-btn bg-gradient-to-r from-teal-400 to-blue-600 hover:shadow-xl hover:scale-105"
+          class="px-8 py-2 text-lg text-white transition duration-300 transform rounded-full shadow-lg home-btn bg-gradient-to-r from-primary to-primary hover:shadow-xl hover:scale-105"
         >
-          Ko‘rish
+          Dars jadvalini ko'rish
         </router-link>
       </div>
     </div>

@@ -1,36 +1,39 @@
 <template>
   <section class="min-h-screen py-10 bg-gray-50">
-    <div class="max-w-2xl px-5 mx-auto mb-4">
+    <div class="container px-5 mx-auto mb-8">
       <BackButton />
+      <h2 class="mb-6 text-3xl font-bold text-center text-gray-800">
+        Fakultet va bo'limlar ro'yxati
+      </h2>
+      <span class="block mb-6 text-lg font-bold text-center text-gray-800"
+        >Fakultet yoki bo'limingizni tanlang</span
+      >
     </div>
-    <h1 class="mb-6 text-3xl font-bold text-center text-gray-800">Fakultetingizni tanlang</h1>
     <the-loader v-if="loading" />
     <div v-else>
-      <div v-if="departments" class="max-w-2xl px-5 mx-auto">
-        <ul class="flex flex-col gap-2 space-y-4">
+      <div v-if="departments" class="container px-5 mx-auto">
+        <ul class="grid grid-cols-2 gap-6">
           <li
-            v-for="(item, index) in departments"
+            v-for="item in departments"
             :key="item.id"
-            class="flex items-center p-4 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105"
+            class="flex items-center p-4 transition-transform transform bg-white border border-gray-300 rounded-lg hover:scale-105"
           >
-            <span
-              class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-blue-500 rounded-full"
-            >
-              {{ index + 1 }}
-            </span>
-            <router-link
-              :to="{
-                name: 'groups',
-                params: {
-                  id: item.id
-                }
-              }"
-              class="w-full h-full text-lg font-semibold text-blue-500 hover:text-blue-700"
-            >
-              {{ item.name }}
-              <span v-if="item.id == 7 || item.id == 20 || item.id == 21">bo'limi</span>
-              <span v-else>fakulteti</span>
-            </router-link>
+            <div class="flex items-center gap-4">
+              <img class="rounded-full w-14 h-14" :src="useImage(item.img_url)" :alt="item.name" />
+              <router-link
+                :to="{
+                  name: 'groups',
+                  params: {
+                    id: item.id
+                  }
+                }"
+                class="w-full h-full text-lg font-semibold hover:text-primary"
+              >
+                {{ item.name }}
+                <span v-if="item.id == 7 || item.id == 20 || item.id == 21">bo'limi</span>
+                <span v-else>fakulteti</span>
+              </router-link>
+            </div>
           </li>
         </ul>
       </div>
@@ -43,6 +46,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import TheLoader from '@/components/TheLoader.vue'
 import BackButton from '@/components/BackButton.vue'
+import { useImage } from '@/composables/useImage'
 
 const apiURL = 'https://hemisback.nammqi.uz/api/hemis/department-list?limit=200&_structure_type=11'
 const adminToken = ''
@@ -55,7 +59,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/muhandislik.jpg'
   },
   {
     id: 6,
@@ -64,7 +69,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/sanoat.jpg'
   },
   {
     id: 3,
@@ -73,7 +79,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/mashinasozlik.jpg'
   },
   {
     id: 2,
@@ -82,7 +89,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/energetika.jpg'
   },
   {
     id: 49,
@@ -91,7 +99,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/iqtisodiyot.jpg'
   },
   {
     id: 4,
@@ -100,7 +109,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/transport.jpg'
   },
   {
     id: 1,
@@ -109,7 +119,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/logo-uz.png'
   },
   {
     id: 20,
@@ -118,7 +129,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/logo-uz.png'
   },
   {
     id: 7,
@@ -127,7 +139,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/logo-uz.png'
   },
   {
     id: 21,
@@ -136,7 +149,8 @@ const departments = [
     structureType: { code: '11', name: 'Fakultet' },
     localityType: { code: '12', name: 'Qo‘shma' },
     parent: null,
-    active: true
+    active: true,
+    img_url: 'faculties/logo-uz.png'
   }
 ]
 

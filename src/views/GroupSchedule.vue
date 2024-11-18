@@ -1,25 +1,30 @@
 <template>
-  <div class="container p-4 mx-auto">
-    <div class="flex items-center gap-5 mb-10">
+  <section class="min-h-screen py-10 bg-gray-50">
+    <div class="container px-5 mx-auto">
       <BackButton />
-      <span
-        class="relative flex justify-center w-full text-5xl font-bold text-transparent bg-gradient-to-r from-blue-500 via-teal-500 to-blue-400 bg-clip-text"
-      >
-        Guruh: {{ lessons[0]?.group.name }}
-        <span
-          class="absolute h-1 transform -translate-x-1/2 left-1/2 -bottom-1 bg-gradient-to-r from-teal-500 to-blue-500"
-        ></span>
-      </span>
+      <div class="mb-4">
+        <div v-if="!loading" class="flex items-center gap-5 text-3xl font-semibold text-primary">
+          <div v-if="lessons[0]" class="relative flex justify-center w-full">
+            Guruh:
+            <span class="px-1">
+              {{ lessons[0].group.name }}
+            </span>
+          </div>
+          <div v-else class="relative flex justify-center w-full text-red-400">
+            Guruhingiz uchun dars jadvali mavjud emas
+          </div>
+        </div>
+      </div>
+
+      <h1 class="mb-4 text-2xl font-semibold text-center">
+        Joriy hafta dars jadvali
+        <span class="italic"> ( {{ currentWeek.start }} / {{ currentWeek.end }} ) </span>
+      </h1>
+
+      <TheLoader v-if="loading" />
+      <TheTable v-else :lessons="lessons" />
     </div>
-
-    <h1 class="mb-4 text-2xl font-semibold text-center">
-      Joriy hafta dars jadvali
-      <span class="italic"> ( {{ currentWeek.start }} / {{ currentWeek.end }} ) </span>
-    </h1>
-
-    <TheLoader v-if="loading" />
-    <TheTable v-else :lessons="lessons" />
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

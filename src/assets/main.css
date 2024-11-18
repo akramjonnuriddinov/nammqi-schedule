@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Bricolage Grotesque', 'DM Sans', 'Poppins', sans-serif;
+  font-family: 'DM Sans', 'Bricolage Grotesque', 'DM Sans', 'Poppins', sans-serif;
 }
 
 ::-webkit-scrollbar {

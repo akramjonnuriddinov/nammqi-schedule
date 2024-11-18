@@ -1,5 +1,8 @@
 <template>
   <section @click="showKeyboard = false" class="min-h-screen py-10 bg-gray-50">
+    <div class="container mx-auto">
+      <BackButton />
+    </div>
     <h2
       v-if="!loading && filteredGroups.length > 0"
       class="mb-6 text-3xl font-bold text-center text-gray-800"
@@ -19,9 +22,6 @@
       Guruh topilmadi!
     </h2>
     <span class="block mb-6 text-lg font-bold text-center text-gray-800">Guruhingizni tanlang</span>
-    <div class="container mx-auto">
-      <BackButton />
-    </div>
     <div
       @click.stop
       class="container mx-auto"
@@ -34,7 +34,7 @@
           type="text"
           v-model="searchQuery"
           placeholder="Guruhingiz nomini yozing..."
-          class="w-full p-3 mb-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full p-3 mb-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           @focus="showKeyboard = true"
         />
         <OnlineKeyboard
@@ -63,7 +63,7 @@
               class="flex items-center p-4 transition-transform transform bg-white border border-gray-300 rounded-md hover:scale-105"
             >
               <span
-                class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-blue-500 rounded-full"
+                class="flex items-center justify-center min-w-[40px] min-h-[40px] mr-4 text-white bg-primary rounded-full"
               >
                 {{ index + 1 }}
               </span>
@@ -74,7 +74,7 @@
                     id: group.id
                   }
                 }"
-                class="w-full text-lg font-semibold text-blue-500 hover:text-blue-700"
+                class="w-full text-lg font-semibold text-primary hover:text-primary"
               >
                 {{ group.name }}
               </router-link>

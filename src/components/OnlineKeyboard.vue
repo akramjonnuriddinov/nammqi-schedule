@@ -38,11 +38,9 @@ export default defineComponent({
       ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
     ])
 
-    // Create an audio element for the keyboard sound
-    const sound = new Audio(KeyboardAudio) // Replace with the path to your sound file
+    const sound = new Audio(KeyboardAudio)
 
     const handleKeyPress = (key: string) => {
-      // Play sound on button press
       sound.play()
 
       if (key === 'Backspace') {
