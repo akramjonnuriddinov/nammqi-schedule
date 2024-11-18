@@ -17,23 +17,14 @@
           Dars jadvali (Dasturiy ta'minot HEMIS - Oliy ta’lim jarayonlarini boshqarish axborot
           tizimi bilan integratsiya qilingan)
         </p>
-        <!-- <p class="mb-6 text-sm text-center text-gray-600">
-          Lesson schedule (software integrated with HEMIS - higher education process management
-          information system)
-        </p>
-        <p class="mb-6 text-sm text-center text-gray-600">
-          Расписание уроков (программное обеспечение, интегрированное с HEMIS — информационной
-          системой управления процессом высшего образования)
-        </p> -->
         <router-link
-          to="/schedule"
+          to="/departments"
           class="px-8 py-2 text-lg text-white transition duration-300 transform rounded-full shadow-lg home-btn bg-gradient-to-r from-primary to-primary hover:shadow-xl hover:scale-105"
         >
           Dars jadvalini ko'rish
         </router-link>
       </div>
     </div>
-    <!-- Background Hexagon Overlay -->
     <div class="absolute inset-0 z-0 bg-hex-pattern"></div>
   </main>
   <p class="absolute bottom-0 w-full py-2 text-center text-gray-500 max-[800px]:static">
@@ -46,7 +37,7 @@ import AppAnimation from '@/components/AppAnimation.vue'
 import AnimationJson from '@/assets/animation/Schedule2.json'
 
 const defaultOptions = {
-  loop: false, // Continuous loop
+  loop: false,
   autoplay: true,
   renderer: 'svg',
   animationData: AnimationJson

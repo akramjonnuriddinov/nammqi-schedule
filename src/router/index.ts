@@ -13,9 +13,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/schedule',
-      name: 'schedule',
-      component: () => import('../views/ScheduleView.vue')
+      path: '/departments',
+      name: 'departments',
+      component: () => import('../views/DepartmentsView.vue')
     },
     {
       path: '/groups/:id',

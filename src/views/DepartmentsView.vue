@@ -120,7 +120,7 @@ const departments = [
     localityType: { code: '11', name: 'Mahalliy' },
     parent: null,
     active: true,
-    img_url: 'faculties/logo-uz.png'
+    img_url: 'faculties/qurilish.png'
   },
   {
     id: 20,
