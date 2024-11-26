@@ -1,7 +1,7 @@
 <template>
   <div class="schedule-container">
     <div v-for="day in orderedLessons" :key="day.dayName" class="day-section">
-      <h2 class="day-header text-center">{{ day.dayName }}</h2>
+      <h2 class="text-center day-header">{{ day.dayName }}</h2>
       <table class="lesson-table">
         <thead>
           <tr>
@@ -21,7 +21,7 @@
             <td>{{ lesson.lessonPair.start_time }}</td>
             <td>{{ lesson.lessonPair.end_time }}</td>
             <td>{{ lesson.subject.name }}</td>
-            <td>{{ lesson.auditorium.name }}</td>
+            <td>{{ formatInput(lesson.auditorium.name) }}</td>
             <td>{{ lesson.trainingType.name }}</td>
             <td>{{ lesson.employee.name }}</td>
           </tr>
@@ -122,6 +122,29 @@ const orderedLessons = computed((): DayLesson[] => {
     lessons: sortByTime(lessonsByDay[day] || [])
   }))
 })
+
+function formatInput(input: any) {
+  // Split the input by spaces and handle the components
+  const parts = input.split(' ')
+  const numbers = parts[0].split('/')
+  const type = parts[1].toUpperCase() // Ensure the type is always capitalized
+
+  // Destructure the numbers array
+  const [bino, xona, students] = numbers
+
+  // Map the type to the corresponding word
+  let typeText = ''
+  if (type === 'A') {
+    typeText = 'Amaliyot'
+  } else if (type === 'M') {
+    typeText = 'Maruza'
+  } else if (type === 'm') {
+    typeText = 'Maruza' // lowercase 'm' should also map to Maruza
+  }
+
+  // Return the formatted string
+  return `${bino}-bino, ${xona}-xona, sig'imi: ${students}, ${typeText}`
+}
 </script>
 
 <style scoped>
