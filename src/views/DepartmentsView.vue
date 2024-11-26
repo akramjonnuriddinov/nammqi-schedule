@@ -12,7 +12,7 @@
     <the-loader v-if="loading" />
     <div v-else>
       <div v-if="departments" class="container px-5 mx-auto">
-        <ul class="grid grid-cols-2 gap-6">
+        <ul class="grid grid-cols-2 gap-6 max-md:grid-cols-1">
           <li
             v-for="item in departments"
             :key="item.id"

@@ -1,7 +1,7 @@
 <template>
   <button
     @click="$router.go(-1)"
-    class="inline-flex items-center justify-center px-6 py-3 font-bold text-white transition duration-300 ease-in-out transform bg-primary rounded-full shadow-md hover:bg-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary"
+    class="inline-flex items-center justify-center px-6 py-3 font-bold text-white transition duration-300 ease-in-out transform rounded-full shadow-md bg-primary hover:bg-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary max-md:mb-5"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

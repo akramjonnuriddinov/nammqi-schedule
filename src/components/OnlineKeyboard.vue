@@ -69,12 +69,17 @@ export default defineComponent({
 .keyboard {
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 100%;
   gap: 8px;
   background: #f4f4f4;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 700px) {
+  .keyboard {
+    display: none;
+  }
 }
 .keyboard-row {
   display: flex;
