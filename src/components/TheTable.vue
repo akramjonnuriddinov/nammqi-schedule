@@ -127,7 +127,7 @@ function formatInput(input: any) {
   // Split the input by spaces and handle the components
   const parts = input.split(' ')
   const numbers = parts[0].split('/')
-  const type = parts[1].toUpperCase() // Ensure the type is always capitalized
+  const type = parts[1]?.toUpperCase() // Ensure the type is always capitalized
 
   // Destructure the numbers array
   const [bino, xona, students] = numbers
