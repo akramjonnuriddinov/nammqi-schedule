@@ -309,10 +309,5 @@ function formatInput(input: any) {
   .day-header {
     font-size: 14px;
   }
-
-  .lesson-table th:nth-child(2),
-  .lesson-table td:nth-child(2) /* Kirish */ {
-    display: none;
-  }
 }
 </style>
