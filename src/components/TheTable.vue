@@ -248,4 +248,71 @@ function formatInput(input: any) {
 .lesson-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+/* General Mobile Optimization */
+@media (max-width: 980px) {
+  .lesson-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap; /* Allow horizontal scrolling */
+  }
+  .schedule-container {
+    margin: 10px;
+  }
+
+  .day-section {
+    flex-direction: column; /* Stack content vertically */
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .day-header {
+    font-size: 16px;
+    padding: 8px;
+    writing-mode: initial;
+  }
+
+  .lesson-table {
+    font-size: 12px; /* Reduce font size for smaller screens */
+  }
+
+  .lesson-table th,
+  .lesson-table td {
+    padding: 5px;
+  }
+
+  .lesson-table th:nth-child(1),
+  .lesson-table td:nth-child(1) {
+    width: 8%; /* Adjust # column */
+  }
+
+  .lesson-table th:nth-child(4),
+  .lesson-table td:nth-child(4) {
+    width: auto; /* Let Fan nomi take more space */
+  }
+}
+
+/* Extra Small Screens (e.g., phones under 480px) */
+@media (max-width: 480px) {
+  .lesson-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap; /* Allow horizontal scrolling */
+  }
+
+  .lesson-table th,
+  .lesson-table td {
+    text-align: left; /* Align text for better readability */
+    font-size: 10px; /* Further reduce font size */
+  }
+
+  .day-header {
+    font-size: 14px;
+  }
+
+  .lesson-table th:nth-child(2),
+  .lesson-table td:nth-child(2) /* Kirish */ {
+    display: none;
+  }
+}
 </style>
